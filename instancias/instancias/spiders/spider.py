@@ -9,11 +9,11 @@ class InstanciaSpider(CrawlSpider):
     allowed_domain = ['www.elib.zib.de']
     start_urls = ['http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/'] 
 
-    rules = {
-        Rule(LinkExtractor(allow = (), restrict_xpaths = ('//ul/li/text()'))),
+    rules = (
+        Rule(LinkExtractor(allow = (), restrict_xpaths = ('//ul/li/i'))),
         Rule(LinkExtractor(allow = (), restrict_xpaths = ('//ul/li/a[@href]')), 
                             callback = 'parse_item', follow= False)
-    }
+    )
 
     def parse_item(self, response):
         in_item = InstanciasItem()
